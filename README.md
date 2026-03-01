@@ -1,11 +1,3 @@
-Got it — you want that **clean activity-guide style format**, but for:
-
-👉 **PaperMC + Debian + Playit.gg**
-
-Here’s your GitHub-ready README written exactly in that structured instructional format.
-
----
-
 ````markdown
 # Debian PaperMC Server Setup Guide (With Playit.gg)
 
@@ -20,7 +12,7 @@ sudo apt update && sudo apt upgrade -y
 ````
 
 **Explanation:**
-Ensures your Debian system is fully updated before installing dependencies.
+Updates all installed packages to the latest versions to ensure system stability and security.
 
 ---
 
@@ -34,7 +26,7 @@ java -version
 ```
 
 **Explanation:**
-The `java -version` command confirms Java 17+ is installed and ready.
+Installs Java runtime and verifies that Java 17+ is properly installed.
 
 ---
 
@@ -46,23 +38,22 @@ cd ~/paper-server
 ```
 
 **Explanation:**
-Creates a dedicated folder for your Minecraft server files.
+Creates a dedicated directory to store server files and configurations.
 
 ---
 
 ## 4. Download PaperMC Server
 
-Download the latest Paper version:
+Download the latest Paper build:
 
 ```bash
 wget https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/XXX/downloads/paper-1.20.4-XXX.jar -O paper.jar
 ```
 
-Replace `XXX` with the latest build number from:
-[https://papermc.io/downloads](https://papermc.io/downloads)
+Replace `XXX` with the latest build number from [https://papermc.io/downloads](https://papermc.io/downloads)
 
 **Explanation:**
-Downloads the PaperMC server JAR file and renames it to `paper.jar` for easier execution.
+Downloads the Paper server file and renames it to `paper.jar` for easier execution.
 
 ---
 
@@ -74,7 +65,7 @@ Start the server:
 java -Xms1G -Xmx2G -jar paper.jar --nogui
 ```
 
-It will stop automatically and generate files.
+The server will stop automatically after generating configuration files.
 
 Edit the EULA file:
 
@@ -94,14 +85,14 @@ To:
 eula=true
 ```
 
-Start again:
+Start the server again:
 
 ```bash
 java -Xms1G -Xmx2G -jar paper.jar --nogui
 ```
 
 **Explanation:**
-Minecraft requires accepting the EULA before the server can run.
+Accepting the EULA is required before the Minecraft server can run.
 
 ---
 
@@ -118,20 +109,20 @@ Add:
 java -Xms2G -Xmx4G -jar paper.jar --nogui
 ```
 
-Make executable:
+Make it executable:
 
 ```bash
 chmod +x start.sh
 ```
 
-Run:
+Run the server:
 
 ```bash
 ./start.sh
 ```
 
 **Explanation:**
-This script simplifies starting the server and allows easy RAM adjustment.
+This script simplifies server startup and allows easy RAM configuration.
 
 ---
 
@@ -150,15 +141,15 @@ Run Playit:
 ./playit-linux
 ```
 
-**Setup Steps:**
+Setup steps:
 
-1. Open the URL displayed in the terminal.
-2. Log in.
+1. Open the URL shown in the terminal.
+2. Log in to your account.
 3. Copy the tunnel key.
-4. Paste it into the terminal.
+4. Paste it back into the terminal.
 
 **Explanation:**
-Playit.gg creates a secure public tunnel to your local server without needing router configuration.
+Playit.gg creates a secure public tunnel to your local Minecraft server without router configuration.
 
 ---
 
@@ -171,20 +162,20 @@ When prompted:
 * Local Port → 25565
 * Name → minecraft
 
-You will receive an address like:
+You will receive an address similar to:
 
 ```
 yourserver.playit.cloud:12345
 ```
 
 **Explanation:**
-Players connect to this public address instead of your local IP.
+Players will connect to this public address instead of your local IP address.
 
 ---
 
 ## 9. Run Server and Playit Together
 
-Create combined script:
+Create a combined script:
 
 ```bash
 nano run-all.sh
@@ -206,14 +197,14 @@ Make executable:
 chmod +x run-all.sh
 ```
 
-Start everything:
+Start both services:
 
 ```bash
 ./run-all.sh
 ```
 
 **Explanation:**
-This script launches Playit in the background and then starts the Minecraft server.
+Starts Playit in the background and then launches the Minecraft server.
 
 ---
 
@@ -225,33 +216,33 @@ Install screen:
 sudo apt install screen -y
 ```
 
-Start session:
+Start a session:
 
 ```bash
 screen -S mcserver
 ./run-all.sh
 ```
 
-Detach session:
+Detach from session:
 
 ```
 CTRL + A, then D
 ```
 
-Reattach:
+Reattach later:
 
 ```bash
 screen -r mcserver
 ```
 
 **Explanation:**
-Allows the server to keep running after you close the terminal.
+Allows the server to continue running even after closing the terminal.
 
 ---
 
 ## 11. Auto Start on Boot (Optional)
 
-Create systemd service:
+Create a systemd service:
 
 ```bash
 sudo nano /etc/systemd/system/minecraft.service
@@ -274,7 +265,9 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-Enable service:
+Replace `YOUR_USERNAME` with your Debian username.
+
+Enable and start the service:
 
 ```bash
 sudo systemctl daemon-reload
@@ -289,7 +282,7 @@ sudo systemctl status minecraft
 ```
 
 **Explanation:**
-Automatically starts the server when Debian boots.
+Ensures the Minecraft server automatically starts when the system boots.
 
 ---
 
@@ -302,25 +295,5 @@ Automatically starts the server when Debian boots.
 **Explanation:**
 World data and configurations remain intact during updates.
 
----
-
-# Final Result
-
-You now have:
-
-* PaperMC running on Debian
-* Public access via Playit.gg
-* Optional background running
-* Optional automatic startup
-
-Players connect using the Playit-generated address.
-
 ```
-
----
-
-If you want, I can now:
-
-- Make a **cleaner academic-style version** (like your Debian activity)
-- Or a **more professional GitHub project layout with table of contents and badges**
 ```
